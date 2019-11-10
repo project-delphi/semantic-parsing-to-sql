@@ -16,10 +16,10 @@
 <body>
 <div class="jumbotron jumbotron-fluid text-white bg-primary text-center">
     <div class="container">
-        <h1 class="display-4">IRNet: Complex Text to SQL</h1>
+        <h1 class="display-4"> SOTA Complex Text2SQL IRNET</h1>
         <p class="lead"> Web Application allowing querying for complex SQL (MULTIPLE JOINS, ORDER BY, HAVING, irregular column names, cell values) using natural language strings. The endpoint is a Google Colab Notebook serving the model. </p>
-        <a class="btn btn-outline-light" href="https://arxiv.org/pdf/1809.08887.pdf" role="button">Spider Complex SQL Competition: rev. 02/2019 </a>
-        <a class="btn btn-outline-light" href="https://arxiv.org/pdf/1905.08205.pdf" role="button">IRNet BERT Paper: rev. 09/2019 </a>
+        <a class="btn btn-outline-light" href="https://arxiv.org/pdf/1809.08887.pdf" role="button">Spider Complex SQL Competition </a>
+        <a class="btn btn-outline-light" href="https://arxiv.org/pdf/1905.08205.pdf" role="button">IRNet BERT Paper </a>
     </div>
 </div>
 <div class="container">
@@ -29,7 +29,11 @@
                 <div class="form-group">
                     <label for="nl-question">Natural Language Question</label>
                     <input type="text" class="form-control" id="nl-question"
-                        placeholder="Example: List the names of the customers who have once bought product “food”.">
+                        placeholder="List the names of the customers who have once bought product “food”.">
+                        <p> </p>
+                    <input type="text" class="form-control" id="db-schema"
+                        placeholder="Database Schema for Tables">
+                        <p> </p>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
@@ -47,7 +51,7 @@
     JOIN     orders      AS t2 
     JOIN     order_items AS t3 
     JOIN     products    AS t4 
-    where    t4.product_name = “food” 
+    WHERE    t4.product_name = “food” 
     GROUP BY t1.customer_id 
     HAVING   COUNT(*) >= 1
 </code>
@@ -70,5 +74,3 @@
 
 </body>
 </html>
-
-
