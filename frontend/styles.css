@@ -1,0 +1,15 @@
+pre {
+    font-size: 12px !important;
+  }
+  
+  h4 {
+    font-weight: bolder;
+  }
+  
+  .response-container {
+    /* opacity: 0; */
+  }
+  
+  .bg-green {
+    background-color: rgb(155, 221, 155) !important;
+  }

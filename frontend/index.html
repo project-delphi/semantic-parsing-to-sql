@@ -9,33 +9,57 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/monokai-sublime.min.css">
 
 </head>
 
 <body>
-    <div class="container">
-        <h3>IRNet: Complex Text to SQL</h3>
-
-        <form>
-            <div class="form-group">
-                <label for="nl-question">Natural Language Question</label>
-                <input type="text" class="form-control" id="nl-question"
-                    placeholder="Show the names of students who have a grade higher than 5 and have at least 2 friends.">
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary"> Convert to SQL </button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="generated_sql">Example textarea</label>
-                <textarea class="form-control" id="generated_sql" rows="10"></textarea>
-            </div>
-        </form>
+    <div class="jumbotron jumbotron-fluid text-white bg-primary text-center">
+        <div class="container">
+            <h1 class="display-4">IRNet: Complex Text to SQL</h1>
+            <p class="lead"> WebApp Exposing IRNet mode via Google Colab</p>
+            <a class="btn btn-outline-light" href="#" role="button">Link</a>
+            <a class="btn btn-outline-light" href="#" role="button">Link</a>
+        </div>
     </div>
-
-
-
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-body">
+                <form> 
+                    <div class="form-group">
+                        <label for="nl-question">Natural Language Question</label>
+                        <input type="text" class="form-control" id="nl-question"
+                            placeholder="Example: List the names of the customers who have once bought product “food”.">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <input type="submit" value="Convert to SQL" class="btn btn-primary"></input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+            
+        <div class="card response-container">
+            <div class="card-header bg-green">
+                <h4></h4>
+            </div>
+            <div class="card-body">
+                <pre>
+      <code class="monokai-sublime">
+SELECT   t1.customer_name 
+FROM     customers   AS t1 
+JOIN     orders      AS t2 
+JOIN     order_items AS t3 
+JOIN     products    AS t4 
+where    t4.product_name = “food” 
+GROUP BY SEMQL: t1.customer_id 
+HAVING   count(*) >= 1
+      </code>
+    </pre>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -47,7 +71,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="./main.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
 </body>
-
 </html>
+
+
