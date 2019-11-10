@@ -14,65 +14,59 @@
 </head>
 
 <body>
-    <div class="jumbotron jumbotron-fluid text-white bg-primary text-center">
-        <div class="container">
-            <h1 class="display-4">IRNet: Complex Text to SQL</h1>
-            <p class="lead"> WebApp Exposing IRNet mode via Google Colab</p>
-            <a class="btn btn-outline-light" href="#" role="button">Link</a>
-            <a class="btn btn-outline-light" href="#" role="button">Link</a>
-        </div>
-    </div>
+<div class="jumbotron jumbotron-fluid text-white bg-primary text-center">
     <div class="container">
-        <div class="card mb-3">
-            <div class="card-body">
-                <form> 
-                    <div class="form-group">
-                        <label for="nl-question">Natural Language Question</label>
-                        <input type="text" class="form-control" id="nl-question"
-                            placeholder="Example: List the names of the customers who have once bought product “food”.">
+        <h1 class="display-4">IRNet: Complex Text to SQL</h1>
+        <p class="lead"> Web Application allowing querying for complex SQL (MULTIPLE JOINS, ORDER BY, HAVING, irregular column names, cell values) using natural language strings. The endpoint is a Google Colab Notebook serving the model. </p>
+        <a class="btn btn-outline-light" href="https://arxiv.org/pdf/1809.08887.pdf" role="button">Spider Complex SQL Competition: rev. 02/2019 </a>
+        <a class="btn btn-outline-light" href="https://arxiv.org/pdf/1905.08205.pdf" role="button">IRNet BERT Paper: rev. 09/2019 </a>
+    </div>
+</div>
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-body">
+            <form> 
+                <div class="form-group">
+                    <label for="nl-question">Natural Language Question</label>
+                    <input type="text" class="form-control" id="nl-question"
+                        placeholder="Example: List the names of the customers who have once bought product “food”.">
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <input type="submit" value="Convert to SQL" class="btn btn-primary"></input>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <input type="submit" value="Convert to SQL" class="btn btn-primary"></input>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-            
-        <div class="card response-container">
-            <div class="card-header bg-green">
-                <h4></h4>
-            </div>
-            <div class="card-body">
-                <pre>
-      <code class="monokai-sublime">
-SELECT   t1.customer_name 
-FROM     customers   AS t1 
-JOIN     orders      AS t2 
-JOIN     order_items AS t3 
-JOIN     products    AS t4 
-where    t4.product_name = “food” 
-GROUP BY SEMQL: t1.customer_id 
-HAVING   count(*) >= 1
-      </code>
-    </pre>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+        
+<pre>
+<code class="monokai-sublime">
+    SELECT   t1.customer_name 
+    FROM     customers   AS t1 
+    JOIN     orders      AS t2 
+    JOIN     order_items AS t3 
+    JOIN     products    AS t4 
+    where    t4.product_name = “food” 
+    GROUP BY t1.customer_id 
+    HAVING   COUNT(*) >= 1
+</code>
+</pre>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="./main.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+<script src="./main.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 </body>
 </html>

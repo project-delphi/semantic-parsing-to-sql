@@ -1,17 +1,14 @@
 const form = document.querySelector('form');
 const h4 = document.querySelector('h4');
-const reponseContainer = document.querySelector('.response-container');
 const input = document.querySelector('#nl-question');
-const codeBlock = document.querySelector('.response-container .card-body');
+const codeBlock = document.querySelector('.monokai-sublime');
 
 const postData = () => {
-  const url = 'https://jsonplaceholder.typicode.com/posts';
-  
-  fetch(`${url}`, {
+  fetch('https://jsonplaceholder.typicode.com/posts/', {
     method: 'POST',
     body: JSON.stringify({
-      title: `${input.value}`,
-      body: 'test',
+      title: `foo`,
+      body: 'bar',
       userId: 1
     }),
     headers: {
@@ -19,23 +16,23 @@ const postData = () => {
     }
   })
   .then(response => response.json())
-  .then(data => displaySqlData(data))
+  .then(data => {
+    console.log(data);
+    displaySqlData(data)
+  })
 }
 
 const displayData = (e) => {
   e.preventDefault();
-  h4.textContent = `Results for: -${input.value}`;
-  reponseContainer.style.opacity = 1;
-  reponseContainer.style.transition = 'all .5s ease-in-out';
+  codeBlock.style.opacity = 1;
+  codeBlock.style.transition = 'all .5s ease-in-out';
   displaySqlData();
-  }
+}
 
 const displaySqlData = (data) => {
   data ? (
-    codeBlock.innerHTML = ` 
-        ${data.title}
-  `
-  ):(`<span>Loading...</span>`);
+    codeBlock.textContent = `${JSON.stringify(data) }`)
+    :(`<span>Loading...</span>`);
 }
 
 const clearInput = () => document.querySelector('#nl-question').value = '';
@@ -45,6 +42,6 @@ form.addEventListener('submit', displayData);
 form.addEventListener('submit', clearInput);
 
 input.addEventListener('keydown', () => {
-    reponseContainer.style.opacity = 0;
-    reponseContainer.style.transition = 'all .5s ease-in-out';
+    codeBlock.style.opacity = 0;
+    codeBlock.style.transition = 'all .5s ease-in-out';
 })
