@@ -1,3 +1,5 @@
-# IRNet-webapp
+# Semantic Parsing Web Application
 
-WebApp to connect with Google Colab for IRNet: Natural Language to SQL.
+Warning: Work in Progress!
+
+WebApp to connect with Google Colab for Natural Language parsing of text to SQL.
