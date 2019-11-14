@@ -1,7 +1,44 @@
+h1 {
+  font-weight: bolder;
+  font-size: 3.5rem !important;
+}
+
 pre {
-    font-size: 12px !important;
-  }
-  
-  h4 {
-    font-weight: bolder;
-  }
+  font-size: 12px !important;
+}
+
+h4 {
+  font-weight: bolder;
+}
+
+.fa-check-circle {
+  color: #06d27e;
+  font-size: 1.75rem;
+}
+.copy-btn {
+  height: 50px;
+  width: 50px;
+  align-self: flex-end;
+  position: absolute;
+  border-radius: 50%;
+  padding:.5rem;
+  background-color: rgba(0, 0, 0, 0.04);
+  border: 1px solid transparent;
+  color: white;
+}
+
+.copy-btn:hover {
+  background-color: #007bfe;
+  border: 1px solid transparent;
+}
+
+#sql-prediction {
+  display: flex;
+  flex-direction: column;
+}
+
+#db-schema {
+  background-color:#22241e;
+  border: #22241e;
+  color: white;
+}

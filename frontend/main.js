@@ -1,47 +1,52 @@
 const form = document.querySelector('form');
-const h4 = document.querySelector('h4');
-const input = document.querySelector('#nl-question');
-const codeBlock = document.querySelector('.monokai-sublime');
+const sqlPrediction = document.querySelector('#sql-prediction');
+const codeTag = document.querySelector('.monokai-sublime');
+const copyBtn = document.querySelector('.copy-btn');
+const inputNlQuestion = document.querySelector('#nl-question');
+const inputDbSchema = document.querySelector('#db-schema');
 
-const postData = () => {
-  fetch('https://jsonplaceholder.typicode.com/posts/', {
+const url = 'https://jsonplaceholder.typicode.com/posts/'
+
+
+
+const postData = (e) => {
+  e.preventDefault();
+  const postOptions = {
     method: 'POST',
     body: JSON.stringify({
-      title: `foo`,
-      body: 'bar',
-      userId: 1
+      question: `${inputNlQuestion.value}`,
+      tableSchema: `${inputDbSchema.value}`
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8"
     }
-  })
+  };
+  fetch(url, postOptions)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
-    displaySqlData(data)
+    codeTag.textContent = `${data.question} ${data.tableSchema}`;
+    document.querySelectorAll('pre, code').forEach(block => {
+      hljs.highlightBlock(block);
+    });
+    sqlPrediction.style.opacity = 1;
+    sqlPrediction.style.transition = 'all .5s ease-in-out';
+    inputNlQuestion.value = ''
+    inputDbSchema.value = ''
   })
 }
 
-const displayData = (e) => {
-  e.preventDefault();
-  codeBlock.style.opacity = 1;
-  codeBlock.style.transition = 'all .5s ease-in-out';
-  displaySqlData();
+const copyToClipboard = () => {
+  const preTagContent = document.querySelector('#pre-sql').textContent;
+  const textArea = document.createElement('textarea');
+  textArea.textContent = preTagContent;
+  document.body.append(textArea);
+  textArea.select();
+  document.execCommand("copy");
+  textArea.classList.add('d-none');
 }
 
-const displaySqlData = (data) => {
-  data ? (
-    codeBlock.textContent = `${JSON.stringify(data) }`)
-    :(`<span>Loading...</span>`);
-}
 
-const clearInput = () => document.querySelector('#nl-question').value = '';
+
 
 form.addEventListener('submit', postData);
-form.addEventListener('submit', displayData);
-form.addEventListener('submit', clearInput);
-
-input.addEventListener('keydown', () => {
-    codeBlock.style.opacity = 0;
-    codeBlock.style.transition = 'all .5s ease-in-out';
-})
+copyBtn.addEventListener('click', copyToClipboard);
