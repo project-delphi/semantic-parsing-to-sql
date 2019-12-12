@@ -6,19 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>IRNet Web Application: Natural Language to SQL</title>
+    <!-- CSS STYLES -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/monokai-sublime.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS STYLES -->
 </head>
 
 <body>
     <div class="jumbotron jumbotron-fluid text-white bg-primary text-center mb-0">
         <div class="container">
-            <h1>IRNet:Complex Text2SQL</h1>
+            <h1>IRNET Complex Sem to SQL</h1>
             <p>
-                A work in progress of SOTA machine learning for semantic parsing. 
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, quibusdam eos doloremque perferendis modi minima, iusto neque quas repellat natus aut nobis autem repudiandae sit molestiae minus soluta hic explicabo!
             </p>
             <a class="btn btn-outline-light" target="_blank" href="https://arxiv.org/pdf/1809.08887.pdf" role="button">
                 Spider Complex SQL Competition
@@ -31,7 +30,7 @@
     <div class="lead text-center mt-3">
         <span class="d-block">
             A Web App for querying complex SQL
-        </span>
+        </span>        
     </div>
     <div class="d-flex justify-content-around py-5">
         <div>
@@ -39,75 +38,67 @@
             <span>Multiple JOINs</span>
         </div>
         <div>
-            <i class="far fa-check-circle mr-2 d-block text-center"></i>
-            <span>ORDER BY</span>
+            <i class="far fa-check-circle mr-2 d-block text-center"></i> 
+            <span>ORDER BY</span> 
         </div>
         <div>
-            <i class="far fa-check-circle mr-2 d-block text-center"></i>
+            <i class="far fa-check-circle mr-2 d-block text-center"></i> 
             <span>HAVING</span>
         </div>
         <div>
-            <i class="far fa-check-circle mr-2 d-block text-center"></i>
+            <i class="far fa-check-circle mr-2 d-block text-center"></i> 
             <span>Irregular column names</span>
         </div>
         <div>
-            <i class="far fa-check-circle mr-2 d-block text-center"></i>
+            <i class="far fa-check-circle mr-2 d-block text-center"></i> 
             <span>Cell values</span>
         </div>
     </div>
-    <div class="container">
-        <div class="card mb-3">
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="nl-question">Natural Language Question</label>
-                        <input type="text" class="form-control mb-2" id="nl-question" required
-                            placeholder="List the names of the customers who have once bought product “food”." />
-                        <label for="nl-question">Database Schema</label>
-                        <textarea rows="5" type="text" class="form-control" id="db-schema"
-                            placeholder="INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country) VALUES ('Cardinal','Tom B. Erichsen','Skagen 21','Stavanger','4006','Norway');"
-                            required></textarea>
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-body">
+            <form> 
+                <div class="form-group">
+                    <label for="nl-question">Natural Language Question</label>
+                    <input type="text" class="form-control mb-2" id="nl-question" required
+                        placeholder="List the names of the customers who have once bought product “food”."/>
+                    <label for="nl-question">Database Schema</label>
+                    <textarea rows="5" type="text" class="form-control" id="db-schema" placeholder="INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country) VALUES ('Cardinal','Tom B. Erichsen','Skagen 21','Stavanger','4006','Norway');" required></textarea>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <input type="submit" value="Convert to SQL" class="btn btn-primary"></input>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <input type="submit" value="Convert to SQL" class="btn btn-primary" id='btn'></input>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div id="sql-prediction">
-            <button class="copy-btn"><i class="far fa-copy"></i></button>
-            <pre id="pre-sql">
-<code class="monokai-sublime">
-    SELECT   t1.customer_name 
-    FROM     customers   AS t1 
-    JOIN     orders      AS t2 
-    JOIN     order_items AS t3 
-    JOIN     products    AS t4 
-    WHERE    t4.product_name = “food” 
-    GROUP BY t1.customer_id 
-    HAVING   COUNT(*) >= 1
-</code>
-</pre>
+                </div>
+            </form>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="./main.js"></script>
-    <script src="https://kit.fontawesome.com/2186577ee2.js" crossorigin="anonymous"></script>
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+<div id="sql-prediction">
+    <button class="copy-btn"><i class="far fa-copy"></i></button>
+<pre id="pre-sql">
+<code class="sql monokai-sublime hljs">
+SELECT   t1.customer_name 
+FROM     customers   AS t1 
+JOIN     orders      AS t2 
+JOIN     order_items AS t3 
+JOIN     products    AS t4 
+WHERE    t4.product_name = “food” 
+GROUP BY t1.customer_id 
+HAVING   COUNT(*) >= 1
+</code>
+</pre>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"crossorigin="anonymous"></script>
+<script src="./main.js"></script>
+<script src="https://kit.fontawesome.com/2186577ee2.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
 
 </body>
-
 </html>
+
+

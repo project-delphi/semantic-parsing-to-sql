@@ -5,6 +5,13 @@ h1 {
 
 pre {
   font-size: 12px !important;
+  background:#23241f;
+  padding: 1rem;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;  
 }
 
 h4 {
@@ -19,7 +26,9 @@ h4 {
   height: 50px;
   width: 50px;
   align-self: flex-end;
-  position: absolute;
+  position: relative;
+  right: 1rem;
+  top: 4rem;
   border-radius: 50%;
   padding:.5rem;
   background-color: rgba(0, 0, 0, 0.04);
@@ -41,4 +50,59 @@ h4 {
   background-color:#22241e;
   border: #22241e;
   color: white;
+}
+
+
+.hljs{ 
+  display:block;
+  overflow-x:auto;
+  background:#23241f;
+}
+
+.hljs,.hljs-tag,.hljs-subst {
+  color:#f8f8f2 
+}
+
+.hljs-strong,.hljs-emphasis {
+  color:#a8a8a2
+}
+  
+.hljs-bullet, .hljs-quote, .hljs-number, .hljs-regexp, .hljs-literal, .hljs-link {
+  color:#ae81ff
+}
+
+.hljs-code, .hljs-title, .hljs-section, .hljs-selector-class {
+  color:#a6e22e
+}
+
+.hljs-strong { 
+  font-weight:bold
+} 
+
+.hljs-emphasis { 
+  font-style:italic 
+}
+
+.hljs-keyword, .hljs-selector-tag, .hljs-name, .hljs-attr {
+  color:#f92672
+}
+
+.hljs-symbol,.hljs-attribute {
+  color:#66d9ef
+}
+
+.hljs-params,.hljs-class .hljs-title {
+  color:#f8f8f2
+}
+
+.hljs-string,.hljs-type,.hljs-built_in,
+.hljs-builtin-name,.hljs-selector-id,
+.hljs-selector-attr,.hljs-selector-pseudo,
+.hljs-addition,.hljs-variable,
+.hljs-template-variable {
+  color:#e6db74
+}
+
+.hljs-comment, .hljs-deletion, .hljs-meta { 
+  color:#75715e
 }
